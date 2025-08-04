@@ -6,10 +6,7 @@ import com.cpd.hotel_system.hotel_management_service_api.utill.StandardResponsed
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 
@@ -25,6 +22,34 @@ public class HotelController {
         hotelService.create(dto);
         return new ResponseEntity<>(new StandardResponsedto(
                 201,"Hotel Saved!",null
+        ), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/admin/update/{id}")
+    public ResponseEntity<StandardResponsedto> update(
+            @PathVariable("id") String hotelId,
+            @RequestBody RequestHotelDto dto) throws SQLException {
+        hotelService.update(dto, hotelId);
+        return new ResponseEntity<>(new StandardResponsedto(
+                201,"Hotel Updated!",null
+        ), HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/admin/delete/{id}")
+    public ResponseEntity<StandardResponsedto> delete(
+            @PathVariable("id") String hotelId) throws SQLException {
+        hotelService.delete(hotelId);
+        return new ResponseEntity<>(new StandardResponsedto(
+                204,"Hotel Deleted!",null
+        ), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/visitor/find-by-id/{id}")
+    public ResponseEntity<StandardResponsedto> findById(
+            @PathVariable("id") String hotelId) throws SQLException {
+
+        return new ResponseEntity<>(new StandardResponsedto(
+                204,"Hotel Found!",hotelService.findById(hotelId)
         ), HttpStatus.CREATED);
     }
 
