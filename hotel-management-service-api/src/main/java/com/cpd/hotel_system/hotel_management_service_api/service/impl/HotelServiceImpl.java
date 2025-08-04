@@ -25,7 +25,7 @@ import static java.util.Arrays.stream;
 @RequiredArgsConstructor
 public class HotelServiceImpl implements HotelService
 {
-    private HotelRepo hotelRepo;
+    private final HotelRepo hotelRepo;
     private final ByteCodeHandeller byteCodeHandeller;
 
     @Override
