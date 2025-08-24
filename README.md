@@ -31,9 +31,9 @@
 
 ## Prerequisites
 
-- Java 17+ (or the version your project is configured for)
-- Maven (if not using the wrapper)
-- MySQL (or compatible relational database)
+- Java 17+ 
+- Maven 
+- MySQL 
 - Git
 
 ## Installation
